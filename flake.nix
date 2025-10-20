@@ -1,5 +1,5 @@
 {
-  description = "A basic flake with a shell";
+  description = "pass-env is like env (the unix util) but gets the env values from pass";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.systems.url = "github:nix-systems/default";
   inputs.flake-utils = {
@@ -23,20 +23,22 @@
         };
 
         packages.default = let
-          version = "2.3.2";
+          version = "1.0.0";
         in pkgs.buildGoModule {
 
-          pname = "ngm";
+          pname = "pass-env";
           inherit version;
 
           src = pkgs.fetchFromGitHub {
             owner = "otard95";
             repo = "pass-env";
             rev = "v${version}";
-            hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+            hash = "sha256-0n7YaUOxnC2LUcsbitR9/rq1M4ghE4tR93LUIqRWB+E=";
           };
 
-          vendorHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          vendorHash = "sha256-hpAsYPhiYnTpY5Z7QZz9cr5RtleHnR1ezgoVaQ+cvp0=";
+
+          subPackages = ["."];
 
         };
       }
