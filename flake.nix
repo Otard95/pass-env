@@ -1,5 +1,5 @@
 {
-  description = "A basic flake with a shell";
+  description = "pass-env is like env (the unix util) but gets the env values from pass";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.systems.url = "github:nix-systems/default";
   inputs.flake-utils = {
@@ -23,7 +23,7 @@
         };
 
         packages.default = let
-          version = "2.3.2";
+          version = "1.0.0";
         in pkgs.buildGoModule {
 
           pname = "ngm";
