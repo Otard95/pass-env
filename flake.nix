@@ -23,17 +23,16 @@
         };
 
         packages.default = let
-          version = "1.0.0";
-        in pkgs.buildGoModule {
+        in pkgs.buildGoModule rec {
 
           pname = "pass-env";
-          inherit version;
+          version = "1.0.1";
 
           src = pkgs.fetchFromGitHub {
             owner = "otard95";
             repo = "pass-env";
             rev = "v${version}";
-            hash = "sha256-0n7YaUOxnC2LUcsbitR9/rq1M4ghE4tR93LUIqRWB+E=";
+            hash = "sha256-vErPC98vAyffKyA9htfLD9HAi8HBXX7QCB+6nuLCb6k=";
           };
 
           vendorHash = "sha256-hpAsYPhiYnTpY5Z7QZz9cr5RtleHnR1ezgoVaQ+cvp0=";
