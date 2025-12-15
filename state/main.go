@@ -81,7 +81,7 @@ func WriteIndex() error {
 	return nil
 }
 
-func GetIndex() passNameDependents {
+func Index() passNameDependents {
 	return index
 }
 
@@ -241,6 +241,14 @@ func GetSecrets(envPairs map[string]string) (map[string]string, error) {
 	}
 
 	return secrets, nil
+}
+
+func IsEnvPair(s string) bool {
+	if !strings.Contains(s, "=") {
+		return false
+	}
+	parts := strings.SplitN(s, "=", 2)
+	return len(parts) == 2 && parts[0] != "" && parts[1] != ""
 }
 
 func init() {

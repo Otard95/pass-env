@@ -13,7 +13,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	index := state.GetIndex()
+	index := state.Index()
 
 	if len(index) == 0 {
 		fmt.Println("Index is empty (no entries)")

@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/otard95/pass-env/config"
 	"github.com/otard95/pass-env/state"
 	"github.com/spf13/cobra"
 )
@@ -119,14 +120,6 @@ func isCliFlag(s string) bool {
 	return strings.HasPrefix(s, "-")
 }
 
-func isEnvPair(s string) bool {
-	if !strings.Contains(s, "=") {
-		return false
-	}
-	parts := strings.SplitN(s, "=", 2)
-	return len(parts) == 2 && parts[0] != "" && parts[1] != ""
-}
-
 func parseEnvPair(s string) (name, passName string, err error) {
 	parts := strings.SplitN(s, "=", 2)
 	if len(parts) != 2 {
@@ -153,7 +146,20 @@ func parseArgs(args []string) (*ParsedArgs, error) {
 		parsed.EnvOpts = append(parsed.EnvOpts, args[i])
 	}
 
-	for ; i < len(args) && isEnvPair(args[i]); i++ {
+	for ; i < len(args); i++ {
+		if resolved, ok := config.Alieses[args[i]]; ok {
+			for pair := range strings.SplitSeq(resolved, " ") {
+				name, passName, err := parseEnvPair(pair)
+				if err != nil {
+					return nil, err
+				}
+				parsed.EnvPairs[name] = passName
+			}
+			continue
+		} else if !state.IsEnvPair(args[i]) {
+			break
+		}
+
 		name, passName, err := parseEnvPair(args[i])
 		if err != nil {
 			return nil, err
