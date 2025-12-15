@@ -26,13 +26,13 @@
         in pkgs.buildGoModule rec {
 
           pname = "pass-env";
-          version = "1.1.0";
+          version = "1.1.1";
 
           src = pkgs.fetchFromGitHub {
             owner = "otard95";
             repo = "pass-env";
             rev = "v${version}";
-            hash = "sha256-aqPZuCIjYow9yIsa30SYR/MjEFYlZ0iXHdjDHl3kQuo=";
+            hash = "sha256-SPZnGKooe2srbRZGDjLN8IuT+Wp4/XXSrKCbXawfPcs=";
           };
 
           vendorHash = "sha256-hpAsYPhiYnTpY5Z7QZz9cr5RtleHnR1ezgoVaQ+cvp0=";
