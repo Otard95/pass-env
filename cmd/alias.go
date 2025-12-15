@@ -17,9 +17,9 @@ var aliasCmd = &cobra.Command{
 	Use:   "alias ALIAS [NAME=PASS_NAME...]",
 	Short: "Alias a set for NAME=PASS_NAME pairs",
 	Long: `If you where to 'pass-env alias ghp GITHUB_TOKEN=github/token',
-	the following two commands would be equivalent:
-		- 'pass-env GITHUB_TOKEN=github/token gh pr view -c'
-		- 'pass-env ghp gh pr view -c'
+the following two commands would be equivalent:
+  - 'pass-env GITHUB_TOKEN=github/token gh pr view -c'
+  - 'pass-env ghp gh pr view -c'
 	`,
 	Args: cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
