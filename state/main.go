@@ -106,7 +106,9 @@ func Clear(cacheEntries ...string) error {
 
 		out, err := passCmd.CombinedOutput()
 		if err != nil {
-			errors = append(errors, fmt.Errorf("failed to remove '%s': %s\n%s", entry, err, out))
+			if !strings.HasSuffix(string(out), "is not in the password store.") {
+				errors = append(errors, fmt.Errorf("failed to remove '%s': %s\n%s", entry, err, out))
+			}
 		}
 	}
 
